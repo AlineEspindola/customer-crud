@@ -1,9 +1,6 @@
-interface TableProps {
-  titles: string[];
-  data: Array<Record<string, string>>; 
-}
+import Person from "@/core/Person";
 
-export default function Table({ titles, data }: TableProps) {
+export default function Table({ titles, data }: { titles: string[]; data: Person[] }) {
   return (
     <table className="w-full border-collapse border border-gray-200">
       <thead className="bg-[#F9F9FB]">
@@ -19,31 +16,20 @@ export default function Table({ titles, data }: TableProps) {
         </tr>
       </thead>
       <tbody>
-        {data.map((row, idx) => (
+        {data.map((person, idx) => (
           <tr key={idx} className="border-b border-gray-200">
-            {titles.map((title) => (
-              <td key={title} className="px-6 py-4 text-gray-600">
-                {isValidUrl(row[title]) ? (
-                  <a
-                    href={row[title]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline"
-                  >
-                    {row[title]}
-                  </a>
-                ) : (
-                  row[title]
-                )}
-              </td>
-            ))}
+            <td className="px-6 py-4 text-gray-800 ">{person.personName}</td>
+            <td className="px-6 py-4 text-gray-600">{person.personCompany}</td>
+            <td className="px-6 py-4 text-blue-600 underline">
+              <a href={person.personProfile} target="_blank" rel="noreferrer">
+                {person.personProfile}
+              </a>
+            </td>
+            <td className="px-6 py-4 text-gray-600">{person.personLastContact.toLocaleDateString()}</td>
+            <td className="px-6 py-4 text-gray-600">{person.personWhatToSay}</td>
           </tr>
         ))}
       </tbody>
     </table>
   );
-}
-
-function isValidUrl(str: string) {
-  return str.startsWith("http://") || str.startsWith("https://") || str.startsWith("www.");
 }

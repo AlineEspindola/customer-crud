@@ -8,6 +8,7 @@ const titles = [
   "Perfil do LinkedIn",
   "Último Contato",
   "O que falar",
+  "Ações"
 ];
 
 const data = [

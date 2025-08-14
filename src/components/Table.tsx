@@ -1,6 +1,28 @@
 import Person from "@/core/Person";
+import { IconEdit, IconTrash } from "./Icons";
 
-export default function Table({ titles, data }: { titles: string[]; data: Person[] }) {
+function renderActions(person: Person) {
+  return (
+    <td className="flex px-6 py-4 gap-2.5">
+      <button className="flex justify-center items-center text-green-600 rounded-full cursor-pointer">
+        <IconEdit />
+      </button>
+      <button className="flex justify-center items-center text-red-600 rounded-full cursor-pointer">
+        <IconTrash />
+      </button>
+    </td>
+  );
+}
+
+export default function Table({
+  titles,
+  data,
+}: {
+  titles: string[];
+  data: Person[];
+  personSelected?: (person: Person) => void;
+  personDeleted?: (person: Person) => void;
+}) {
   return (
     <table className="w-full border-collapse border border-gray-200">
       <thead className="bg-[#F9F9FB]">
@@ -25,8 +47,13 @@ export default function Table({ titles, data }: { titles: string[]; data: Person
                 {person.personProfile}
               </a>
             </td>
-            <td className="px-6 py-4 text-gray-600">{person.personLastContact.toLocaleDateString()}</td>
-            <td className="px-6 py-4 text-gray-600">{person.personWhatToSay}</td>
+            <td className="px-6 py-4 text-gray-600">
+              {person.personLastContact.toLocaleDateString()}
+            </td>
+            <td className="px-6 py-4 text-gray-600">
+              {person.personWhatToSay}
+            </td>
+            {renderActions(person)}
           </tr>
         ))}
       </tbody>

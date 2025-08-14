@@ -1,3 +1,5 @@
+"use client";
+
 import ModalTailwindUI from "@/components/Modal";
 import Table from "@/components/Table";
 import Person from "@/core/Person";
@@ -8,7 +10,6 @@ const titles = [
   "Perfil do LinkedIn",
   "Último Contato",
   "O que falar",
-  "Ações"
 ];
 
 const data = [
@@ -30,10 +31,24 @@ const data = [
   ),
 ];
 
+function personSelected(person: Person) {
+  console.log("personSelected");
+}
+
+
+function personDeleted(person: Person) {
+  console.log("personDeleted");
+}
+
 export default function Home() {
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <Table titles={titles} data={data} />
+      <Table
+        titles={titles}
+        data={data}
+        personSelected={personSelected}
+        personDeleted={personDeleted}
+      />
       <ModalTailwindUI></ModalTailwindUI>
     </div>
   );

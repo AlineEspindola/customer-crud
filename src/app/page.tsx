@@ -1,5 +1,6 @@
 "use client";
 
+import NetworkingLottie from "@/components/Animation";
 import ModalTailwindUI from "@/components/Modal";
 import Table from "@/components/Table";
 import Person from "@/core/Person";
@@ -42,7 +43,8 @@ function personDeleted(person: Person) {
 
 export default function Home() {
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className=" max-w-5xl mx-auto">
+      <NetworkingLottie/>
       <ModalTailwindUI textButton="Novo Contato" />
       <Table
         titles={titles}

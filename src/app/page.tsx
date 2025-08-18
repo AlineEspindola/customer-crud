@@ -43,13 +43,13 @@ function personDeleted(person: Person) {
 export default function Home() {
   return (
     <div className="p-6 max-w-5xl mx-auto">
+      <ModalTailwindUI textButton="Novo Contato" />
       <Table
         titles={titles}
         data={data}
         personSelected={personSelected}
         personDeleted={personDeleted}
       />
-      <ModalTailwindUI></ModalTailwindUI>
     </div>
   );
 }

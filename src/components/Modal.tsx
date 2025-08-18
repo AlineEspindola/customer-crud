@@ -2,17 +2,21 @@
 
 import { useState } from "react";
 
-export default function ModalTailwindUI() {
+interface ModalTailwindUIProps {
+   textButton: string
+}
+
+export default function ModalTailwindUI(props: ModalTailwindUIProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="p-6">
+    <div className="pb-4 flex justify-end">
       <button
         type="button"
         onClick={() => setOpen(true)}
         className="rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 cursor-pointer"
       >
-        Abrir Modal
+        {props.textButton}
       </button>
 
       {open && (

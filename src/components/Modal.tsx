@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ReactNode  } from "react";
 
 interface ModalTailwindUIProps {
    textButton: string
+   icon: ReactNode
 }
 
 export default function ModalTailwindUI(props: ModalTailwindUIProps) {
@@ -14,8 +15,9 @@ export default function ModalTailwindUI(props: ModalTailwindUIProps) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 cursor-pointer"
+        className="flex gap-2 items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 cursor-pointer"
       >
+        {props.icon}
         {props.textButton}
       </button>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import NetworkingLottie from "@/components/Animation";
+import { IconAddContact } from "@/components/Icons";
 import ModalTailwindUI from "@/components/Modal";
 import Table from "@/components/Table";
 import Person from "@/core/Person";
@@ -45,7 +46,7 @@ export default function Home() {
   return (
     <div className=" max-w-5xl mx-auto">
       <NetworkingLottie/>
-      <ModalTailwindUI textButton="Novo Contato" />
+      <ModalTailwindUI textButton="Novo Contato" icon={<IconAddContact />} />
       <Table
         titles={titles}
         data={data}

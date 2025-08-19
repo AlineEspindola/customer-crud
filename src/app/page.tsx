@@ -1,6 +1,7 @@
 "use client";
 
 import NetworkingLottie from "@/components/Animation";
+import Form from "@/components/Form";
 import { IconAddContact } from "@/components/Icons";
 import ModalTailwindUI from "@/components/Modal";
 import Table from "@/components/Table";
@@ -37,7 +38,6 @@ function personSelected(person: Person) {
   console.log("personSelected");
 }
 
-
 function personDeleted(person: Person) {
   console.log("personDeleted");
 }
@@ -45,8 +45,14 @@ function personDeleted(person: Person) {
 export default function Home() {
   return (
     <div className=" max-w-5xl mx-auto">
-      <NetworkingLottie/>
-      <ModalTailwindUI textButton="Novo Contato" icon={<IconAddContact />} />
+      <NetworkingLottie />
+      <ModalTailwindUI
+        textButton="Novo Contato"
+        iconButton={<IconAddContact />}
+        content={
+          <Form/>
+        }
+      />
       <Table
         titles={titles}
         data={data}

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, ReactNode  } from "react";
+import { useState, ReactNode } from "react";
 
 interface ModalTailwindUIProps {
-   textButton: string
-   icon: ReactNode
+  textButton: string;
+  iconButton: ReactNode;
+  content: ReactNode;
 }
 
 export default function ModalTailwindUI(props: ModalTailwindUIProps) {
@@ -17,7 +18,7 @@ export default function ModalTailwindUI(props: ModalTailwindUIProps) {
         onClick={() => setOpen(true)}
         className="flex gap-2 items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 cursor-pointer"
       >
-        {props.icon}
+        {props.iconButton}
         {props.textButton}
       </button>
 
@@ -35,22 +36,7 @@ export default function ModalTailwindUI(props: ModalTailwindUIProps) {
               <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      {/* Ícone */}
-                      <svg
-                        className="h-6 w-6 text-red-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 9v3.75m0 3.75h.007v.007H12v-.007z"
-                        />
-                      </svg>
-                    </div>
+                    {props.content}
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"></div>
                   </div>
                 </div>
@@ -58,7 +44,7 @@ export default function ModalTailwindUI(props: ModalTailwindUIProps) {
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
-                    className="cursor-pointer inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto "
+                    className="cursor-pointer inline-flex w-full justify-center rounded-md bg-indigo-600 hover:bg-indigo-700 px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto "
                   >
                     Confirmar
                   </button>

@@ -6,23 +6,23 @@ interface ModalTailwindUIProps {
   textButton: string;
   iconButton: ReactNode;
   content: ReactNode;
+  open: boolean;
+  onClick?: () => void;
 }
 
 export default function ModalTailwindUI(props: ModalTailwindUIProps) {
-  const [open, setOpen] = useState(false);
-
   return (
     <div className="pb-4 flex justify-end">
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={props.onClick}
         className="flex gap-2 items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 cursor-pointer"
       >
         {props.iconButton}
         {props.textButton}
       </button>
 
-      {open && (
+      {props.open && (
         <div
           className="relative z-10"
           aria-labelledby="modal-title"
@@ -40,7 +40,7 @@ export default function ModalTailwindUI(props: ModalTailwindUIProps) {
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"></div>
                   </div>
                 </div>
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
@@ -55,7 +55,7 @@ export default function ModalTailwindUI(props: ModalTailwindUIProps) {
                   >
                     Cancelar
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

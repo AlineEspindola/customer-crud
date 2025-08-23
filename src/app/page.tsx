@@ -6,6 +6,7 @@ import { IconAddContact } from "@/components/Icons";
 import ModalTailwindUI from "@/components/Modal";
 import Table from "@/components/Table";
 import Person from "@/core/Person";
+import { useState } from "react";
 
 const titles = [
   "Nome",
@@ -43,14 +44,23 @@ function personDeleted(person: Person) {
 }
 
 export default function Home() {
+
+  function savePerson(person: Person) {
+    console.log(person)
+  }
+
+  const [visible, setVisible] = useState<'table' | 'form'>('table')
+
   return (
     <div className=" max-w-5xl mx-auto">
       <NetworkingLottie />
       <ModalTailwindUI
         textButton="Novo Contato"
         iconButton={<IconAddContact />}
+        onClick={() => setVisible('form')}
+        open={visible ? visible === "form" ? true : false : false}
         content={
-          <Form/>
+          <Form person={data[1]} cancel={() => setVisible('table')} personChange={savePerson}/>
         }
       />
       <Table

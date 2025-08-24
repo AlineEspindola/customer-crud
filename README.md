@@ -19,22 +19,22 @@ As principais tecnologias utilizadas são:
 
 ## 📥 Como baixar e rodar o projeto
 
-### 1️⃣ Clonar o repositório
+### Clonar o repositório
 ```bash
 git clone https://github.com/AlineEspindola/network-crud
 ```
 
-### 2️⃣ Entrar na pasta do projeto
+### Entrar na pasta do projeto
 ```bash
 cd network-crud
 ```
 
-### 3️⃣ Instalar as dependências
+### Instalar as dependências
 ```bash
 npm install
 ```
 
-### 5️⃣ Rodar a aplicação
+### Rodar a aplicação
 ```bash
 npm run dev
 ```

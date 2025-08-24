@@ -33,7 +33,7 @@ export default class CollectionPerson implements PersonRepository {
         data.name,
         data.company,
         data.profile,
-        data.lastContact?.toDate ? data.lastContact.toDate() : data.lastContact,
+        data.lastContact?.toDate ? data.lastContact.toDate() : new Date(data.lastContact),
         data.whatToSay
       );
     },

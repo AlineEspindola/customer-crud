@@ -35,32 +35,43 @@ const data = [
   ),
 ];
 
-function personSelected(person: Person) {
-  console.log("personSelected");
-}
-
-function personDeleted(person: Person) {
-  console.log("personDeleted");
-}
-
 export default function Home() {
+  const [visible, setVisible] = useState<"table" | "form">("table");
+  const [person, setPerson] = useState<Person>(Person.void())
 
   function savePerson(person: Person) {
-    console.log(person)
+    console.log(person);
+    setVisible("table");
   }
 
-  const [visible, setVisible] = useState<'table' | 'form'>('table')
+  function personSelected(person: Person) {
+    setPerson(person);
+    setVisible('form')
+  }
+
+  function personDeleted(person: Person) {
+    console.log("personDeleted");
+  }
+
+  function newPerson() {
+    setPerson(Person.void())
+    setVisible('form')
+  }
 
   return (
-    <div className=" max-w-5xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       <NetworkingLottie />
       <ModalTailwindUI
         textButton="Novo Contato"
         iconButton={<IconAddContact />}
-        onClick={() => setVisible('form')}
-        open={visible ? visible === "form" ? true : false : false}
+        onClick={newPerson}
+        open={visible ? (visible === "form" ? true : false) : false}
         content={
-          <Form person={data[1]} cancel={() => setVisible('table')} personChange={savePerson}/>
+          <Form
+            person={person}
+            cancel={() => setVisible("table")}
+            personChange={savePerson}
+          />
         }
       />
       <Table

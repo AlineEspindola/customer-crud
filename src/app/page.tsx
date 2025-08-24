@@ -1,12 +1,14 @@
 "use client";
 
+import CollectionPerson from "@/backend/db/CollectionPerson";
 import NetworkingLottie from "@/components/Animation";
 import Form from "@/components/Form";
 import { IconAddContact } from "@/components/Icons";
 import ModalTailwindUI from "@/components/Modal";
 import Table from "@/components/Table";
 import Person from "@/core/Person";
-import { useState } from "react";
+import PersonRepository from "@/core/PersonRepository";
+import { useEffect, useState } from "react";
 
 const titles = [
   "Nome",
@@ -36,12 +38,26 @@ const data = [
 ];
 
 export default function Home() {
+  const repo: PersonRepository = new CollectionPerson();
+
   const [visible, setVisible] = useState<"table" | "form">("table");
+  const [people, setPeople] = useState<Person[]>([])
   const [person, setPerson] = useState<Person>(Person.void())
 
-  function savePerson(person: Person) {
-    console.log(person);
-    setVisible("table");
+  useEffect(() => {
+    getAll()
+  }, [])
+
+  function getAll() {
+    repo.getAll().then(people => {
+      setPeople(people)
+      setVisible('table')
+    });
+  }
+
+  async function savePerson(person: Person) {
+    await repo.save(person);
+    getAll();
   }
 
   function personSelected(person: Person) {
@@ -49,8 +65,9 @@ export default function Home() {
     setVisible('form')
   }
 
-  function personDeleted(person: Person) {
-    console.log("personDeleted");
+  async function personDeleted(person: Person) {
+    await repo.delete(person);
+    getAll();
   }
 
   function newPerson() {
@@ -76,7 +93,7 @@ export default function Home() {
       />
       <Table
         titles={titles}
-        data={data}
+        data={people}
         personSelected={personSelected}
         personDeleted={personDeleted}
       />

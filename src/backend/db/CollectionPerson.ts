@@ -11,9 +11,10 @@ import {
   setDoc,
   getDocs,
 } from "firebase/firestore";
+import app from "../config";
 
 export default class CollectionPerson implements PersonRepository {
-  private db = getFirestore();
+  private db = getFirestore(app);
 
   converter = {
     toFirestore(person: Person) {
@@ -32,7 +33,7 @@ export default class CollectionPerson implements PersonRepository {
         data.name,
         data.company,
         data.profile,
-        data.lastContact,
+        data.lastContact?.toDate ? data.lastContact.toDate() : data.lastContact,
         data.whatToSay
       );
     },

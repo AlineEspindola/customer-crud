@@ -21,12 +21,12 @@ As principais tecnologias utilizadas são:
 
 ### 1️⃣ Clonar o repositório
 ```bash
-git clone 
+git clone https://github.com/AlineEspindola/network-crud
 ```
 
 ### 2️⃣ Entrar na pasta do projeto
 ```bash
-cd 
+cd network-crud
 ```
 
 ### 3️⃣ Instalar as dependências
